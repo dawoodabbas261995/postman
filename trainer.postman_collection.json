@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "1122a034-ae07-413b-a1b6-9c39fe5f29da",
+		"name": "trainer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "neural_efficiency_timing Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "50085b4b-ec65-4175-ac5b-2939a70ec8cf",
+						"exec": [
+							"var global = {}",
+							"var neuralEfficiencyTiming = {}",
+							"var withGuideSounds = {}",
+							"var withoutGuideSounds = {}",
+							"",
+							"withGuideSounds.averageMilliseconds = random_number(0,999)",
+							"withGuideSounds.sroPercentage = random_number(0,100)",
+							"withGuideSounds.earlyHitPercentage = random_number(0,100)",
+							"withGuideSounds.lateHitPercentage = random_number(0,100)",
+							"",
+							"withoutGuideSounds.averageMilliseconds = random_number(0,999)",
+							"withoutGuideSounds.sroPercentage = random_number(0,100)",
+							"withoutGuideSounds.earlyHitPercentage = random_number(0,100)",
+							"withoutGuideSounds.lateHitPercentage = random_number(0,100)",
+							"",
+							"",
+							"neuralEfficiencyTiming.withGuideSounds = withGuideSounds",
+							"neuralEfficiencyTiming.withoutGuideSounds = withoutGuideSounds",
+							"neuralEfficiencyTiming.notes = \"These are notes\"",
+							"",
+							"global.neuralEfficiencyTiming = neuralEfficiencyTiming",
+							"",
+							"var net = {}",
+							"net[\"global\"] = global",
+							"",
+							"pm.environment.set(\"net\", JSON.stringify(net));",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"function random_number(min,max){",
+							"    return ((Math.random() * max) + min)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ZGE4Mzk4Y2NmZmZkYTc4MDFlM2ZmNzgiLCJyb2xlIjoidHJhaW5lciIsImNyZWF0ZWRBdCI6MTU3MTMwNTk4MjYwN30.3Rc2uzLJOeXi5eTvexivNUuSz5vJsckM-Z1aALCJy44",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{{net}}"
+				},
+				"url": {
+					"raw": "{{link}}",
+					"host": [
+						"{{link}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "give_performance_metric_data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ZGE4Mzk4Y2NmZmZkYTc4MDFlM2ZmNzgiLCJyb2xlIjoidHJhaW5lciIsImNyZWF0ZWRBdCI6MTU3MTMwNTk4MjYwN30.3Rc2uzLJOeXi5eTvexivNUuSz5vJsckM-Z1aALCJy44",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"performanceMetrics\": [\r\n    {\r\n      \"_id\": \"5df72b584edda84f42fa229b\",\r\n      \"value\": 22\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.40.139.66:3000/trainer/athlete/5df8b3ae4edda84f42fa32d3/performance-metric",
+					"protocol": "http",
+					"host": [
+						"52",
+						"40",
+						"139",
+						"66"
+					],
+					"port": "3000",
+					"path": [
+						"trainer",
+						"athlete",
+						"5df8b3ae4edda84f42fa32d3",
+						"performance-metric"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
